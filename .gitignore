@@ -1,0 +1,15 @@
+# Secrets / credentials
+.env
+.env.*
+*.key
+*.pem
+credentials.json
+*-key.json
+kubeconfig
+.kube/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
