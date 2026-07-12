@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 300" font-family="'Segoe UI','Malgun Gothic',sans-serif">
+  <rect x="0" y="0" width="860" height="300" fill="#ffffff"/>
+  <text x="430" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#2c3e50">CI + CD 엔드투엔드 파이프라인</text>
+
+  <!-- CI band -->
+  <rect x="30" y="60" width="380" height="150" rx="10" fill="#eef4fb" stroke="#b9d0ea"/>
+  <text x="50" y="82" font-size="13" font-weight="700" fill="#2e6bb3">CI · GitHub Actions</text>
+
+  <!-- CD band -->
+  <rect x="450" y="60" width="380" height="150" rx="10" fill="#f2f9f4" stroke="#a9d3b8"/>
+  <text x="470" y="82" font-size="13" font-weight="700" fill="#2f7d4f">CD · ArgoCD</text>
+
+  <!-- nodes -->
+  <g font-size="12.5" fill="#333">
+    <rect x="48" y="100" width="150" height="40" rx="6" fill="#fff" stroke="#9cbde0"/>
+    <text x="123" y="124" text-anchor="middle">① 코드 push (app/**)</text>
+
+    <rect x="240" y="100" width="150" height="40" rx="6" fill="#fff" stroke="#9cbde0"/>
+    <text x="315" y="118" text-anchor="middle">② 이미지 빌드</text>
+    <text x="315" y="133" text-anchor="middle" font-size="10.5" fill="#777">WIF 인증</text>
+
+    <rect x="240" y="158" width="150" height="40" rx="6" fill="#fff" stroke="#9cbde0"/>
+    <text x="315" y="176" text-anchor="middle">③ 이미지 태그</text>
+    <text x="315" y="191" text-anchor="middle" font-size="10.5" fill="#777">매니페스트 커밋 [skip ci]</text>
+
+    <rect x="468" y="100" width="150" height="40" rx="6" fill="#fff" stroke="#8bbf9c"/>
+    <text x="543" y="118" text-anchor="middle">④ Git 변경 감지</text>
+    <text x="543" y="133" text-anchor="middle" font-size="10.5" fill="#777">desired ↔ current</text>
+
+    <rect x="660" y="100" width="150" height="40" rx="6" fill="#fff" stroke="#8bbf9c"/>
+    <text x="735" y="124" text-anchor="middle">⑤ 클러스터 배포</text>
+  </g>
+
+  <!-- arrows -->
+  <defs><marker id="a" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#6b7b8c"/></marker></defs>
+  <g stroke="#6b7b8c" stroke-width="2" fill="none">
+    <path d="M198 120 L236 120" marker-end="url(#a)"/>
+    <path d="M315 140 L315 154" marker-end="url(#a)"/>
+    <path d="M390 178 L430 178 L430 120 L464 120" marker-end="url(#a)"/>
+    <path d="M618 120 L656 120" marker-end="url(#a)"/>
+  </g>
+
+  <!-- loop prevention note -->
+  <text x="430" y="245" text-anchor="middle" font-size="12" fill="#b26a00" font-weight="600">무한 루프 방지: path 필터(app/**) · 봇 재귀 차단 · [skip ci]</text>
+  <text x="430" y="268" text-anchor="middle" font-size="11.5" fill="#777">사람은 의도(코드)만 push → 빌드·태그·배포는 자동</text>
+</svg>
