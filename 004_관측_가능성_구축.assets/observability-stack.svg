@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 400" font-family="'Segoe UI','Malgun Gothic',sans-serif">
+  <rect x="0" y="0" width="860" height="400" fill="#ffffff"/>
+  <text x="430" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#2c3e50">관측 가능성 스택 아키텍처</text>
+
+  <defs><marker id="a" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#6b7b8c"/></marker></defs>
+
+  <!-- Source: cluster pods -->
+  <rect x="30" y="150" width="150" height="100" rx="10" fill="#fbf7ee" stroke="#d9c48f"/>
+  <text x="105" y="176" text-anchor="middle" font-size="13" font-weight="700" fill="#9a7d2e">클러스터 노드</text>
+  <text x="105" y="200" text-anchor="middle" font-size="11.5" fill="#666">Pod · 컨테이너</text>
+  <text x="105" y="222" text-anchor="middle" font-size="11" fill="#888">node-exporter</text>
+  <text x="105" y="238" text-anchor="middle" font-size="11" fill="#888">kube-state-metrics</text>
+
+  <!-- Collectors -->
+  <rect x="250" y="90" width="150" height="52" rx="8" fill="#eef4fb" stroke="#9cbde0"/>
+  <text x="325" y="112" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2e6bb3">Prometheus</text>
+  <text x="325" y="130" text-anchor="middle" font-size="10.5" fill="#666">scrape · TSDB</text>
+
+  <rect x="250" y="258" width="150" height="52" rx="8" fill="#f2f9f4" stroke="#8bbf9c"/>
+  <text x="325" y="280" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f7d4f">Loki</text>
+  <text x="325" y="298" text-anchor="middle" font-size="10.5" fill="#666">로그 저장·질의</text>
+
+  <!-- Fluent Bit as intermediate for logs -->
+  <text x="215" y="290" text-anchor="middle" font-size="10" fill="#2f7d4f">Fluent Bit</text>
+  <text x="215" y="303" text-anchor="middle" font-size="9" fill="#8aa">(DaemonSet)</text>
+
+  <!-- Grafana -->
+  <rect x="470" y="170" width="150" height="60" rx="8" fill="#fdf6ec" stroke="#e0b878"/>
+  <text x="545" y="196" text-anchor="middle" font-size="13" font-weight="700" fill="#c07d1a">Grafana</text>
+  <text x="545" y="216" text-anchor="middle" font-size="10.5" fill="#666">대시보드 · 시각화</text>
+
+  <!-- Alertmanager -->
+  <rect x="470" y="70" width="150" height="52" rx="8" fill="#fdf0ef" stroke="#e0a9a4"/>
+  <text x="545" y="92" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b23b3b">Alertmanager</text>
+  <text x="545" y="110" text-anchor="middle" font-size="10.5" fill="#666">PrometheusRule</text>
+
+  <!-- Notification -->
+  <rect x="690" y="70" width="140" height="52" rx="8" fill="#ffffff" stroke="#c9938e"/>
+  <text x="760" y="92" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b23b3b">알림</text>
+  <text x="760" y="110" text-anchor="middle" font-size="10.5" fill="#666">Slack · Email</text>
+
+  <!-- arrows -->
+  <g stroke="#6b7b8c" stroke-width="2" fill="none">
+    <path d="M180 185 L246 120" marker-end="url(#a)"/>       <!-- pods -> prometheus (metrics) -->
+    <path d="M180 220 L246 280" marker-end="url(#a)"/>       <!-- pods -> loki (via fluent bit) -->
+    <path d="M400 116 L466 180" marker-end="url(#a)"/>       <!-- prometheus -> grafana -->
+    <path d="M400 284 L466 216" marker-end="url(#a)"/>       <!-- loki -> grafana -->
+    <path d="M400 100 L466 96" marker-end="url(#a)"/>        <!-- prometheus -> alertmanager -->
+    <path d="M620 96 L686 96" marker-end="url(#a)"/>         <!-- alertmanager -> notify -->
+  </g>
+
+  <!-- labels -->
+  <text x="205" y="150" text-anchor="middle" font-size="10" fill="#2e6bb3">metrics</text>
+  <text x="200" y="250" text-anchor="middle" font-size="10" fill="#2f7d4f">logs</text>
+
+  <text x="430" y="360" text-anchor="middle" font-size="11.5" fill="#777">메트릭·로그는 Grafana 한 곳에서 보고, 이상 징후는 Alertmanager가 알린다</text>
+</svg>

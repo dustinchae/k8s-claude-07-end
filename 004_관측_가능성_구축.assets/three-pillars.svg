@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 270" font-family="'Segoe UI','Malgun Gothic',sans-serif">
+  <rect x="0" y="0" width="780" height="270" fill="#ffffff"/>
+  <text x="390" y="34" text-anchor="middle" font-size="18" font-weight="700" fill="#2c3e50">관측 가능성의 세 기둥</text>
+
+  <!-- Metrics -->
+  <rect x="30" y="60" width="220" height="170" rx="10" fill="#eef4fb" stroke="#9cbde0"/>
+  <text x="140" y="90" text-anchor="middle" font-size="16" font-weight="700" fill="#2e6bb3">Metrics · 숫자</text>
+  <text x="140" y="118" text-anchor="middle" font-size="12.5" fill="#444">"무엇이" 일어나는가</text>
+  <text x="140" y="150" text-anchor="middle" font-size="12" fill="#555">CPU 90% · 500 req/s</text>
+  <text x="140" y="170" text-anchor="middle" font-size="12" fill="#555">에러율 2%</text>
+  <text x="140" y="206" text-anchor="middle" font-size="12" font-weight="600" fill="#2e6bb3">Prometheus + Grafana</text>
+
+  <!-- Logs -->
+  <rect x="280" y="60" width="220" height="170" rx="10" fill="#f2f9f4" stroke="#8bbf9c"/>
+  <text x="390" y="90" text-anchor="middle" font-size="16" font-weight="700" fill="#2f7d4f">Logs · 텍스트</text>
+  <text x="390" y="118" text-anchor="middle" font-size="12.5" fill="#444">"왜" 일어났는가</text>
+  <text x="390" y="150" text-anchor="middle" font-size="12" fill="#555">connection refused</text>
+  <text x="390" y="170" text-anchor="middle" font-size="12" fill="#555">timeout after 30s</text>
+  <text x="390" y="206" text-anchor="middle" font-size="12" font-weight="600" fill="#2f7d4f">Loki + Fluent Bit</text>
+
+  <!-- Traces (deferred) -->
+  <rect x="530" y="60" width="220" height="170" rx="10" fill="#f3f3f3" stroke="#cccccc" stroke-dasharray="5 4"/>
+  <text x="640" y="90" text-anchor="middle" font-size="16" font-weight="700" fill="#999">Traces · 흐름</text>
+  <text x="640" y="118" text-anchor="middle" font-size="12.5" fill="#999">"어디서" 느려지는가</text>
+  <text x="640" y="150" text-anchor="middle" font-size="12" fill="#aaa">서비스 간 요청 추적</text>
+  <text x="640" y="170" text-anchor="middle" font-size="12" fill="#aaa">병목 지점 식별</text>
+  <text x="640" y="206" text-anchor="middle" font-size="12" font-weight="600" fill="#999">Tempo → 8장으로 유예</text>
+</svg>
