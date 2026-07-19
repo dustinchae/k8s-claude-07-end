@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 430" font-family="'Segoe UI','Malgun Gothic',sans-serif">
+  <rect width="860" height="430" fill="#ffffff"/>
+  <text x="430" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#2c3e50">Argo Rollouts Blue/Green 전환 4단계</text>
+
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="4.5" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6b7b8c"/></marker></defs>
+
+  <!-- Two service labels legend -->
+  <rect x="300" y="42" width="16" height="12" fill="#dbe9fb" stroke="#7aa8dd"/>
+  <text x="322" y="52" font-size="11" fill="#555">activeService (notiflex-api)</text>
+  <rect x="500" y="42" width="16" height="12" fill="#d9f0e2" stroke="#79c199"/>
+  <text x="522" y="52" font-size="11" fill="#555">previewService (notiflex-api-preview)</text>
+
+  <!-- Stage boxes -->
+  <g font-size="11.5" fill="#333">
+    <!-- 1 -->
+    <rect x="30" y="80" width="185" height="300" rx="10" fill="#fafafa" stroke="#ddd"/>
+    <text x="122" y="104" text-anchor="middle" font-size="13" font-weight="700" fill="#2c3e50">① 새 RS 생성</text>
+    <rect x="55" y="150" width="60" height="70" rx="6" fill="#dbe9fb" stroke="#7aa8dd"/>
+    <text x="85" y="180" text-anchor="middle" font-size="11">v1</text>
+    <text x="85" y="196" text-anchor="middle" font-size="9" fill="#666">rev1</text>
+    <rect x="130" y="150" width="60" height="70" rx="6" fill="#eef7f0" stroke="#b7dcc4"/>
+    <text x="160" y="180" text-anchor="middle" font-size="11">v2</text>
+    <text x="160" y="196" text-anchor="middle" font-size="9" fill="#666">rev2</text>
+    <text x="122" y="250" text-anchor="middle" font-size="10.5" fill="#8a8a5e">리소스 2배 (2→4)</text>
+    <text x="122" y="300" text-anchor="middle" font-size="10.5" fill="#2e6bb3">active→v1</text>
+    <text x="122" y="318" text-anchor="middle" font-size="10.5" fill="#2f7d4f">preview→v1</text>
+
+    <!-- 2 -->
+    <rect x="230" y="80" width="185" height="300" rx="10" fill="#fafafa" stroke="#ddd"/>
+    <text x="322" y="104" text-anchor="middle" font-size="13" font-weight="700" fill="#2c3e50">② preview 전환</text>
+    <rect x="255" y="150" width="60" height="70" rx="6" fill="#dbe9fb" stroke="#7aa8dd"/>
+    <text x="285" y="185" text-anchor="middle" font-size="11">v1</text>
+    <rect x="330" y="150" width="60" height="70" rx="6" fill="#d9f0e2" stroke="#79c199"/>
+    <text x="360" y="185" text-anchor="middle" font-size="11">v2</text>
+    <text x="322" y="255" text-anchor="middle" font-size="10.5" fill="#666">readiness 통과 시</text>
+    <text x="322" y="300" text-anchor="middle" font-size="10.5" fill="#2e6bb3">active→v1 (유지)</text>
+    <text x="322" y="318" text-anchor="middle" font-size="10.5" fill="#2f7d4f">preview→v2</text>
+    <text x="322" y="340" text-anchor="middle" font-size="10" fill="#999">실 트래픽 영향 없음</text>
+
+    <!-- 3 -->
+    <rect x="430" y="80" width="185" height="300" rx="10" fill="#fafafa" stroke="#ddd"/>
+    <text x="522" y="104" text-anchor="middle" font-size="13" font-weight="700" fill="#2c3e50">③ cutover</text>
+    <rect x="455" y="150" width="60" height="70" rx="6" fill="#eef1f4" stroke="#c7ccd2"/>
+    <text x="485" y="185" text-anchor="middle" font-size="11" fill="#888">v1</text>
+    <rect x="530" y="150" width="60" height="70" rx="6" fill="#dbe9fb" stroke="#7aa8dd"/>
+    <text x="560" y="185" text-anchor="middle" font-size="11">v2</text>
+    <text x="522" y="255" text-anchor="middle" font-size="10.5" fill="#666">30초 대기 후 자동</text>
+    <text x="522" y="300" text-anchor="middle" font-size="10.5" fill="#2e6bb3">active→v2</text>
+    <text x="522" y="318" text-anchor="middle" font-size="10.5" fill="#2f7d4f">preview→v2</text>
+    <text x="522" y="340" text-anchor="middle" font-size="10" fill="#999">실 트래픽 v2로</text>
+
+    <!-- 4 -->
+    <rect x="630" y="80" width="200" height="300" rx="10" fill="#fafafa" stroke="#ddd"/>
+    <text x="730" y="104" text-anchor="middle" font-size="13" font-weight="700" fill="#2c3e50">④ scaleDown</text>
+    <rect x="660" y="150" width="60" height="70" rx="6" fill="#f4f4f4" stroke="#ddd" stroke-dasharray="4 3"/>
+    <text x="690" y="180" text-anchor="middle" font-size="11" fill="#aaa">v1</text>
+    <text x="690" y="196" text-anchor="middle" font-size="9" fill="#bbb">0 replica</text>
+    <rect x="735" y="150" width="60" height="70" rx="6" fill="#dbe9fb" stroke="#7aa8dd"/>
+    <text x="765" y="185" text-anchor="middle" font-size="11">v2</text>
+    <text x="730" y="255" text-anchor="middle" font-size="10.5" fill="#666">delay(기본 30초) 후</text>
+    <text x="730" y="290" text-anchor="middle" font-size="10.5" fill="#b26a00">유예 중 undo로 즉시 롤백</text>
+    <text x="730" y="312" text-anchor="middle" font-size="10.5" fill="#999">v1은 이력으로 남음</text>
+  </g>
+
+  <g stroke="#6b7b8c" stroke-width="2" fill="none">
+    <path d="M216 230 L228 230" marker-end="url(#a)"/>
+    <path d="M416 230 L428 230" marker-end="url(#a)"/>
+    <path d="M616 230 L628 230" marker-end="url(#a)"/>
+  </g>
+
+  <text x="430" y="410" text-anchor="middle" font-size="11" fill="#777">Service YAML은 그대로 — 컨트롤러가 rollouts-pod-template-hash 셀렉터만 패치해 트래픽을 전환한다</text>
+</svg>

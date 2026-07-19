@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 320" font-family="'Segoe UI','Malgun Gothic',sans-serif">
+  <rect width="780" height="320" fill="#ffffff"/>
+  <text x="390" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2c3e50">Gateway API 계층과 역할 분리</text>
+
+  <defs><marker id="a" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#6b7b8c"/></marker></defs>
+
+  <!-- external -->
+  <rect x="40" y="120" width="110" height="56" rx="8" fill="#fbf7ee" stroke="#d9c48f"/>
+  <text x="95" y="145" text-anchor="middle" font-size="12.5" font-weight="700" fill="#9a7d2e">외부 사용자</text>
+  <text x="95" y="163" text-anchor="middle" font-size="10.5" fill="#777">HTTP :80</text>
+
+  <!-- Gateway -->
+  <rect x="200" y="110" width="150" height="76" rx="8" fill="#eef4fb" stroke="#9cbde0"/>
+  <text x="275" y="134" text-anchor="middle" font-size="13" font-weight="700" fill="#2e6bb3">Gateway</text>
+  <text x="275" y="152" text-anchor="middle" font-size="10.5" fill="#666">IP/포트/리스너 정의</text>
+  <text x="275" y="170" text-anchor="middle" font-size="10" fill="#2e6bb3">인프라팀 관리</text>
+
+  <!-- HTTPRoute -->
+  <rect x="400" y="110" width="150" height="76" rx="8" fill="#f2f9f4" stroke="#8bbf9c"/>
+  <text x="475" y="134" text-anchor="middle" font-size="13" font-weight="700" fill="#2f7d4f">HTTPRoute</text>
+  <text x="475" y="152" text-anchor="middle" font-size="10.5" fill="#666">경로→Service 규칙</text>
+  <text x="475" y="170" text-anchor="middle" font-size="10" fill="#2f7d4f">앱팀 관리</text>
+
+  <!-- Service/Pods -->
+  <rect x="600" y="110" width="140" height="76" rx="8" fill="#fdf6ec" stroke="#e0b878"/>
+  <text x="670" y="134" text-anchor="middle" font-size="13" font-weight="700" fill="#c07d1a">Service</text>
+  <text x="670" y="152" text-anchor="middle" font-size="10.5" fill="#666">notiflex-api</text>
+  <text x="670" y="170" text-anchor="middle" font-size="10" fill="#888">→ Pods</text>
+
+  <g stroke="#6b7b8c" stroke-width="2" fill="none">
+    <path d="M150 148 L196 148" marker-end="url(#a)"/>
+    <path d="M350 148 L396 148" marker-end="url(#a)"/>
+    <path d="M550 148 L596 148" marker-end="url(#a)"/>
+  </g>
+
+  <text x="390" y="228" text-anchor="middle" font-size="12" fill="#555">GatewayClass: <tspan font-weight="700" fill="#2e6bb3">approuting-istio</tspan>  (AKS App Routing 경량 Istio 컨트롤 플레인)</text>
+  <text x="390" y="256" text-anchor="middle" font-size="11.5" fill="#777">Gateway가 선언되면 Azure가 외부 LB·공인 IP를 자동 프로비저닝</text>
+  <text x="390" y="282" text-anchor="middle" font-size="11.5" fill="#777">"어디로 받을지"(Gateway)와 "어디로 보낼지"(HTTPRoute)를 분리 → Blue/Green의 트래픽 전환 지점</text>
+</svg>

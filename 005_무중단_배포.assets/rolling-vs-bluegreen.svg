@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 400" font-family="'Segoe UI','Malgun Gothic',sans-serif">
+  <rect width="820" height="400" fill="#ffffff"/>
+  <text x="410" y="30" text-anchor="middle" font-size="18" font-weight="700" fill="#2c3e50">Rolling Update vs Blue/Green</text>
+
+  <!-- Rolling -->
+  <text x="205" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">Rolling Update</text>
+  <rect x="30" y="78" width="350" height="290" rx="10" fill="#fdf3f2" stroke="#e0b4b0"/>
+  <text x="205" y="104" text-anchor="middle" font-size="12.5" fill="#555">배포 시작 즉시 신규 트래픽 일부가 새 버전으로</text>
+
+  <rect x="60" y="120" width="130" height="40" rx="6" fill="#eef4fb" stroke="#9cbde0"/>
+  <text x="125" y="145" text-anchor="middle" font-size="12">v1 (구버전)</text>
+  <rect x="220" y="120" width="130" height="40" rx="6" fill="#fdf0ef" stroke="#e0a9a4"/>
+  <text x="285" y="145" text-anchor="middle" font-size="12">v2 (새버전)</text>
+
+  <text x="205" y="188" text-anchor="middle" font-size="13" fill="#333">트래픽 ↓ 동시에 두 버전으로 분배</text>
+  <path d="M205 196 L125 214" stroke="#b23b3b" stroke-width="1.6" marker-end="url(#r)"/>
+  <path d="M205 196 L285 214" stroke="#b23b3b" stroke-width="1.6" marker-end="url(#r)"/>
+
+  <text x="205" y="250" text-anchor="middle" font-size="12.5" fill="#b23b3b" font-weight="600">⚠ 교체 순간 connection refused</text>
+  <text x="205" y="272" text-anchor="middle" font-size="12" fill="#8a5a56">Ready ≠ 실제 요청 준비(워밍업 전 5xx)</text>
+  <text x="205" y="294" text-anchor="middle" font-size="12" fill="#8a5a56">"먼저 관찰 후 전환" 개념 없음</text>
+  <text x="205" y="322" text-anchor="middle" font-size="12.5" fill="#b23b3b" font-weight="600">⚠ 롤백도 또 한 번의 Rolling(수십 초)</text>
+  <text x="205" y="344" text-anchor="middle" font-size="12" fill="#8a5a56">그 사이 사용자는 에러 페이지</text>
+
+  <!-- Blue/Green -->
+  <text x="615" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="#2f7d4f">Blue/Green</text>
+  <rect x="440" y="78" width="350" height="290" rx="10" fill="#f2f9f4" stroke="#a9d3b8"/>
+  <text x="615" y="104" text-anchor="middle" font-size="12.5" fill="#555">새 버전을 완전히 띄운 뒤 한 번에 전환</text>
+
+  <rect x="470" y="120" width="130" height="40" rx="6" fill="#dbe9fb" stroke="#7aa8dd"/>
+  <text x="535" y="139" text-anchor="middle" font-size="12" font-weight="600">Blue (active)</text>
+  <text x="535" y="153" text-anchor="middle" font-size="10" fill="#666">실 트래픽</text>
+  <rect x="630" y="120" width="130" height="40" rx="6" fill="#d9f0e2" stroke="#79c199"/>
+  <text x="695" y="139" text-anchor="middle" font-size="12" font-weight="600">Green (preview)</text>
+  <text x="695" y="153" text-anchor="middle" font-size="10" fill="#666">검증용</text>
+
+  <text x="615" y="188" text-anchor="middle" font-size="13" fill="#333">트래픽 → 전량 Blue (Green은 대기·검증)</text>
+  <path d="M560 196 L535 210" stroke="#2f7d4f" stroke-width="2" marker-end="url(#g)"/>
+
+  <text x="615" y="240" text-anchor="middle" font-size="12.5" fill="#2f7d4f" font-weight="600">✓ 검증 끝나면 한 번에 cutover</text>
+  <text x="615" y="262" text-anchor="middle" font-size="12" fill="#4a7d5e">사용자는 전환 중 에러 없음</text>
+  <text x="615" y="290" text-anchor="middle" font-size="12.5" fill="#2f7d4f" font-weight="600">✓ 문제 시 즉시 Blue로 복귀</text>
+  <text x="615" y="312" text-anchor="middle" font-size="12" fill="#4a7d5e">구버전 Pod가 그대로 떠 있어 롤백 즉시</text>
+  <text x="615" y="344" text-anchor="middle" font-size="12" fill="#8a8a5e">대신 전환 동안 리소스 2배</text>
+
+  <defs>
+    <marker id="r" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b23b3b"/></marker>
+    <marker id="g" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2f7d4f"/></marker>
+  </defs>
+</svg>
