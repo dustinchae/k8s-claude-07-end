@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 400" font-family="'Segoe UI','Malgun Gothic',sans-serif">
+  <rect width="840" height="400" fill="#ffffff"/>
+  <text x="420" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#2c3e50">Canary: 기본 설정 vs Gateway API 플러그인</text>
+
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="4.5" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6b7b8c"/></marker></defs>
+
+  <!-- Top: fake canary -->
+  <text x="30" y="66" font-size="14" font-weight="700" fill="#b23b3b">① trafficRouting 없음 — "가짜 Canary"</text>
+  <rect x="30" y="78" width="780" height="120" rx="10" fill="#fdf3f2" stroke="#e0b4b0"/>
+  <rect x="55" y="110" width="90" height="36" rx="5" fill="#fff" stroke="#c9938e"/>
+  <text x="100" y="133" text-anchor="middle" font-size="11">사용자</text>
+  <rect x="200" y="110" width="120" height="36" rx="5" fill="#fff" stroke="#c9938e"/>
+  <text x="260" y="133" text-anchor="middle" font-size="11">HTTPRoute → stable</text>
+  <rect x="380" y="96" width="120" height="30" rx="5" fill="#eef4fb" stroke="#9cbde0"/>
+  <text x="440" y="116" text-anchor="middle" font-size="10.5">stable Pod ×8</text>
+  <rect x="380" y="150" width="120" height="30" rx="5" fill="#eef7f0" stroke="#b7dcc4"/>
+  <text x="440" y="170" text-anchor="middle" font-size="10.5">canary Pod ×2 (80%)</text>
+  <path d="M145 128 L196 128" stroke="#6b7b8c" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M320 128 L376 111" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#a)"/>
+  <text x="560" y="122" font-size="11.5" fill="#b23b3b" font-weight="600">실제 트래픽 100% → 구버전</text>
+  <text x="560" y="142" font-size="10.5" fill="#8a5a56">Pod 비율만 맞출 뿐, 트래픽은 안 나뉨</text>
+  <text x="560" y="160" font-size="10.5" fill="#8a5a56">= Blue/Green과 동일한 위험</text>
+
+  <!-- Bottom: real canary -->
+  <text x="30" y="240" font-size="14" font-weight="700" fill="#2f7d4f">② argoproj-labs/gatewayAPI 플러그인 — 실제 가중치 분산</text>
+  <rect x="30" y="252" width="780" height="128" rx="10" fill="#f2f9f4" stroke="#a9d3b8"/>
+  <rect x="55" y="298" width="90" height="36" rx="5" fill="#fff" stroke="#8bbf9c"/>
+  <text x="100" y="321" text-anchor="middle" font-size="11">사용자</text>
+  <rect x="190" y="290" width="150" height="52" rx="5" fill="#fff" stroke="#8bbf9c"/>
+  <text x="265" y="311" text-anchor="middle" font-size="11">HTTPRoute</text>
+  <text x="265" y="329" text-anchor="middle" font-size="10" fill="#2f7d4f">weight 80/20</text>
+  <rect x="400" y="272" width="120" height="30" rx="5" fill="#dbe9fb" stroke="#7aa8dd"/>
+  <text x="460" y="292" text-anchor="middle" font-size="10.5">stable (80%)</text>
+  <rect x="400" y="330" width="120" height="30" rx="5" fill="#d9f0e2" stroke="#79c199"/>
+  <text x="460" y="350" text-anchor="middle" font-size="10.5">canary (20%)</text>
+  <path d="M145 316 L186 316" stroke="#6b7b8c" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M340 305 L396 287" stroke="#6b7b8c" stroke-width="2.4" marker-end="url(#a)"/>
+  <path d="M340 320 L396 345" stroke="#2f7d4f" stroke-width="2.4" marker-end="url(#a)"/>
+  <!-- controller -->
+  <rect x="575" y="296" width="215" height="40" rx="6" fill="#fff" stroke="#8bbf9c"/>
+  <text x="682" y="313" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2f7d4f">Rollout 컨트롤러</text>
+  <text x="682" y="328" text-anchor="middle" font-size="9.5" fill="#777">단계마다 HTTPRoute weight 갱신</text>
+  <path d="M575 316 L343 316" stroke="#5fb783" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#a)"/>
+</svg>
